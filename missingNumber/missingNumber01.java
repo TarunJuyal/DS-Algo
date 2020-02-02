@@ -1,5 +1,9 @@
 package missingNumber;
 
+//approach
+/**First finding the largest element and  summing of all  integers upto it in sumTotal then find sum of all elements in given array.
+subtracting of the two sum will give us the missing number.**/
+
 public class missingNumber01 {
 
 	public static void main(String[] args) {
