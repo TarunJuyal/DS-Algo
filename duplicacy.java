@@ -1,3 +1,4 @@
+//Using Hashing
 
 public class duplicacy {
 
