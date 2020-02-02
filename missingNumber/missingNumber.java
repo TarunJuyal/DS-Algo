@@ -1,5 +1,7 @@
 package missingNumber;
 
+//Using Hashing
+
 public class missingNumber {
 
 	public static void main(String[] args) {
