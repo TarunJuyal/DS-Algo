@@ -5,7 +5,6 @@ public class palindromeString {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s="abcdcba";
-       //String str=String.copyValueOf(findPalindrome(s,0,s.length()));
 		if(findPalindrome(s, 0, s.length()-1))
 			System.out.println("Palindrome String");
 		else
