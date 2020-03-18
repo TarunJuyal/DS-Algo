@@ -1,5 +1,7 @@
 package recursionAdvance;
 
+//string traversed till empty then previous element concated with returning string while stack falling.For n length string 2^n SubSequences.
+
 import java.util.ArrayList;
 
 public class SubSequenceOfString {
