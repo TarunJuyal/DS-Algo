@@ -1,5 +1,7 @@
 package twoDArray;
 
+//It has 2n-1 different elements
+
 public class ToeplitzMatrix {
 
 	public static void main(String[] args) {
