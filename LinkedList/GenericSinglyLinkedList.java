@@ -8,10 +8,6 @@ class Node<T>{
 	Node(T data){
 		this.data=data;
 	}
-	//@Override
-	//public String toString() {
-		//return "Node"+data+"Ref"+next;
-	//}
 }
 class LinkedListOperations<T>{
 	Node<T> start;
@@ -100,34 +96,6 @@ public class GenericSinglyLinkedList {
 		System.out.println("********************************");
 		ll.delete("shyam");
 		ll.print();
-		//		int choice,pos;
-//		do {
-//			System.out.println("Enter data of node: ");
-//			Node<String> node = new Node<String>(s.next());
-//			System.out.println("Where do u want to enter data (beginning:1/position:2/end:3): ");
-//			choice=s.nextInt();
-//			switch(choice) {
-//			case 1:ll.insertAtBeginning(node);
-//			       break;
-//			case 2:System.out.println("Enter position: ");
-//			       pos=s.nextInt();
-//			       ll.insertAtPosition(node, pos-1);
-//			       break;
-//			case 3:ll.insertAtEnd(node);
-//			       break;
-//			default:System.out.println("Invalid choice!!!");
-//			}
-//			System.out.println("Want to enter more (1 for yes / -1 for no): ");
-//		    choice=s.nextInt();
-//		}while(choice==1); 
-//		ll.print();
-//		do {
-//			System.out.println("Enter data to be deleted: ");
-//			ll.delete(s.next());
-//			System.out.println("Want to delete more (1 for yes / -1 for no): ");
-//		    choice=s.nextInt();
-//		}while(choice==1); 
-//		ll.print();
 	}
 	
 
