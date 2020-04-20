@@ -128,7 +128,7 @@ public class GenericLinkedList {
 		ll.insertAtPosition(new Node<String>("howard"), pos -1);
 		ll.print();
 		System.out.println("********************************");
-		ll.start.next.next.next.next.next.next=ll.start;
+		ll.start.next.next.next.next.next.next=ll.start;  //to check loop
 		ll.detectLoop();
 		ll.detectAndRemoveLoopInLL();
 		ll.print();
