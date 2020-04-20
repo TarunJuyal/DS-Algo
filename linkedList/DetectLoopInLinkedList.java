@@ -80,7 +80,7 @@ public class DetectLoopInLinkedList {
 		ll.insertAtBeginning(new Node<String>("timothy"));
 		int pos = 2;
 		ll.insertAtPosition(new Node<String>("howard"), pos -1);
-		ll.start.next.next.next.next.next.next=ll.start;
+		ll.start.next.next.next.next.next.next=ll.start;   //to check loop
 		ll.detectLoop();
 	}
 	
