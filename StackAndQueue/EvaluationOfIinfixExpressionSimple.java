@@ -2,7 +2,7 @@ package StackAndQueue;
 
 import java.util.Stack;
 
-public class EvaluationOfExpressionSimple {
+public class EvaluationOfInfixExpressionSimple {
 	static Stack<Integer> operandStack=new Stack<>();
 	static int calculate(int firstOp,char Op,int secondOp) {
 		int result=0;
