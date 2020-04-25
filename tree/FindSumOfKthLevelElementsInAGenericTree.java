@@ -1,5 +1,7 @@
 package tree;
 
+//Generic behaves as binary ie not more than 2 children.
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
