@@ -1,5 +1,7 @@
 package tree; 
 
+// input elements should be greater than 0.
+
 import java.util.ArrayList;
 
 class BSTNode{
