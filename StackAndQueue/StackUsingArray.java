@@ -2,14 +2,14 @@ package StackAndQueue;
 
 //To make self generic stack with basic stack functions.
 
-public class Stack<T> {
+public class StackUsingArray<T> {
 
 	private int size;
 	private T arr[];
 	private int top=-1;;
 	
 	@SuppressWarnings("unchecked")
-	public Stack(int size) {
+	public StackUsingArray(int size) {
 		this.size=size;
 		arr=(T[]) new Object[size];
 	}
@@ -50,7 +50,7 @@ public class Stack<T> {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Stack<String> myStack=new Stack<>(5);
+		StackUsingArray<String> myStack=new StackUsingArray<>(5);
 		myStack.push("ram");
 		myStack.push("shyam");
 		myStack.push("tim");
