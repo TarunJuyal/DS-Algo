@@ -1,11 +1,11 @@
 package StackAndQueue;
 
-public class MyQueue<T> {
+public class QueueUsingArray<T> {
 	private int size,front,rear;
 	private T arr[];
 
 	@SuppressWarnings("unchecked")
-	MyQueue(int len){
+	QueueUsingArray(int len){
 		this.size=0;
 		this.front=this.rear=-1;
 		arr= (T[]) new Object[len]; 
@@ -62,7 +62,7 @@ public class MyQueue<T> {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MyQueue<Integer> q= new MyQueue<>(5);
+		QueueUsingArray<Integer> q= new QueueUsingArray<>(5);
 		q.enqueue(10);
 		q.enqueue(20);
 		q.enqueue(30);
