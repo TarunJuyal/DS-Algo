@@ -3,6 +3,7 @@ package graph;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 class Vertex{
 	HashMap<String, Integer> neighbours = new HashMap<>();
@@ -30,7 +31,7 @@ class Graph{
 	public boolean isEdgeExist(String first,String second) {
 		Vertex firstVertex=vertxs.get(first);
 		Vertex secondVertex=vertxs.get(second);
-		if(firstVertex==null || secondVertex==null || !firstVertex.neighbours.containsKey(secondVertex))
+		if(firstVertex==null || secondVertex==null || !firstVertex.neighbours.containsKey(second))
 			return false;
 		return true;
 	}
@@ -57,6 +58,31 @@ class Graph{
 		vertxs.remove(vertexName);
 		return vertexName;
 	}
+	public void removeEdge(String first, String second) {
+		if(isEdgeExist(first, second)) {
+			Vertex firstVertex=vertxs.get(first);
+			Vertex secondVertex=vertxs.get(second);
+			firstVertex.neighbours.remove(second);
+			secondVertex.neighbours.remove(first);
+		}else {
+			System.out.println("no edge exist!!");
+		}
+	}
+	private boolean isPath(String first,String second, HashMap<String, Boolean> isVisited) {
+		isVisited.put(first, true);
+		if(isEdgeExist(first, second))
+			return true;
+		Vertex firstVertex=vertxs.get(first);
+		Set<String> neighbours=firstVertex.neighbours.keySet();
+		for(String neighbour : neighbours) {
+			if(!isVisited.containsKey(neighbour) && isPath(neighbour, second, isVisited))
+				return true;
+		}
+		return false;
+	}
+	public boolean isPathExist(String first,String second) {
+		return isPath(first,second, new HashMap<String,Boolean>());
+	}
 }
 public class MyGraph {
 
@@ -80,8 +106,10 @@ public class MyGraph {
 		graph.createEdge("E", "G", 3);
 		graph.print();
 		System.out.println("After Remove: ");
-		graph.removeVertex("E");
-		graph.print();
+		//graph.removeVertex("E");
+		//graph.removeEdge("D","E");
+		System.out.println("Path btw A and F: "+graph.isPathExist("A", "F"));
+//		graph.print();
 	}
 
 }
