@@ -2,9 +2,14 @@ package graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
+class Pair{
+	String vertexName;
+	String traversalTill;
+}
 class Vertex{
 	HashMap<String, Integer> neighbours = new HashMap<>();
 }
@@ -83,6 +88,67 @@ class Graph{
 	public boolean isPathExist(String first,String second) {
 		return isPath(first,second, new HashMap<String,Boolean>());
 	}
+	public boolean breadthFirstSearch(String source,String destination) {
+		HashMap<String, Boolean> isVisited=new HashMap<>();
+		Pair pair =new Pair();
+		pair.vertexName=source;
+		pair.traversalTill=source;
+		LinkedList<Pair> queue=new LinkedList<>();
+		queue.addLast(pair);
+		while(!queue.isEmpty()) {
+			Pair p= queue.removeFirst();
+			if(isVisited.containsKey(p.vertexName))
+				continue;
+			isVisited.put(p.vertexName, true);
+			System.out.println(p.vertexName+ " "+ p.traversalTill);
+			if(isEdgeExist(p.vertexName, destination)) {
+				System.out.println(destination);
+				return true;
+			}
+			Vertex currentVertex=vertxs.get(p.vertexName);
+			Set<String> neighbours=currentVertex.neighbours.keySet();
+			for(String neighbour : neighbours) {
+				if(!isVisited.containsKey(neighbour)) {
+					Pair newPair=new Pair();
+					newPair.vertexName=neighbour;
+					newPair.traversalTill=p.traversalTill+neighbour;
+					queue.addLast(newPair);
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean depthFirstSearch(String source,String destination) {
+		HashMap<String, Boolean> isVisited=new HashMap<>();
+		Pair pair =new Pair();
+		pair.vertexName=source;
+		pair.traversalTill=source;
+		LinkedList<Pair> stack=new LinkedList<>();
+		stack.addFirst(pair);
+		while(!stack.isEmpty()) {
+			Pair p= stack.removeFirst();
+			if(isVisited.containsKey(p.vertexName))
+				continue;
+			isVisited.put(p.vertexName, true);
+			System.out.println(p.vertexName+ " "+ p.traversalTill);
+			if(isEdgeExist(p.vertexName, destination)) {
+				System.out.println(destination);
+				return true;
+			}
+			Vertex currentVertex=vertxs.get(p.vertexName);
+			Set<String> neighbours=currentVertex.neighbours.keySet();
+			for(String neighbour : neighbours) {
+				if(!isVisited.containsKey(neighbour)) {
+					Pair newPair=new Pair();
+					newPair.vertexName=neighbour;
+					newPair.traversalTill=p.traversalTill+neighbour;
+					stack.addFirst(newPair);
+				}
+			}
+		}
+		return false;
+	}
 }
 public class MyGraph {
 
@@ -105,10 +171,12 @@ public class MyGraph {
 		graph.createEdge("F", "G", 3);
 		graph.createEdge("E", "G", 3);
 		graph.print();
-		System.out.println("After Remove: ");
+//		System.out.println("After Remove: ");
 		//graph.removeVertex("E");
 		//graph.removeEdge("D","E");
-		System.out.println("Path btw A and F: "+graph.isPathExist("A", "F"));
+//		System.out.println("Path btw A and F: "+graph.isPathExist("A", "F"));
+		System.out.println("BFS btw A and F: "+graph.breadthFirstSearch("A", "F"));
+		System.out.println("DFS btw A and F: "+graph.depthFirstSearch("A", "F"));
 //		graph.print();
 	}
 
