@@ -149,6 +149,67 @@ class Graph{
 		}
 		return false;
 	}
+	
+	public void breadthFirstTraversal() {
+		HashMap<String, Boolean> isVisited=new HashMap<>();
+		Pair pair =new Pair();
+		for(Map.Entry<String, Vertex> entry:vertxs.entrySet()) {
+			if(isVisited.containsKey(entry.getKey()))
+				continue;
+			pair.vertexName=entry.getKey();
+			pair.traversalTill=entry.getKey();
+			LinkedList<Pair> queue=new LinkedList<>();
+			queue.addLast(pair);
+			while(!queue.isEmpty()) {
+				Pair p= queue.removeFirst();
+				if(isVisited.containsKey(p.vertexName))
+					continue;
+				isVisited.put(p.vertexName, true);
+				System.out.println(p.vertexName+ " "+ p.traversalTill);
+				Vertex currentVertex=vertxs.get(p.vertexName);
+				Set<String> neighbours=currentVertex.neighbours.keySet();
+				for(String neighbour : neighbours) {
+					if(!isVisited.containsKey(neighbour)) {
+						Pair newPair=new Pair();
+						newPair.vertexName=neighbour;
+						newPair.traversalTill=p.traversalTill+neighbour;
+						queue.addLast(newPair);
+					}
+				}
+			}
+		}
+		
+	}
+	
+	public void depthFirstTraversal() {
+		HashMap<String, Boolean> isVisited=new HashMap<>();
+		Pair pair =new Pair();
+		for(Map.Entry<String, Vertex> entry:vertxs.entrySet()) {
+			if(isVisited.containsKey(entry.getKey()))
+				continue;
+			pair.vertexName=entry.getKey();
+			pair.traversalTill=entry.getKey();
+			LinkedList<Pair> stack=new LinkedList<>();
+			stack.addFirst(pair);
+			while(!stack.isEmpty()) {
+				Pair p= stack.removeFirst();
+				if(isVisited.containsKey(p.vertexName))
+					continue;
+				isVisited.put(p.vertexName, true);
+				System.out.println(p.vertexName+ " "+ p.traversalTill);
+				Vertex currentVertex=vertxs.get(p.vertexName);
+				Set<String> neighbours=currentVertex.neighbours.keySet();
+				for(String neighbour : neighbours) {
+					if(!isVisited.containsKey(neighbour)) {
+						Pair newPair=new Pair();
+						newPair.vertexName=neighbour;
+						newPair.traversalTill=p.traversalTill+neighbour;
+						stack.addFirst(newPair);
+					}
+				}
+			}
+		}
+	}
 }
 public class MyGraph {
 
@@ -172,12 +233,16 @@ public class MyGraph {
 		graph.createEdge("E", "G", 3);
 		graph.print();
 //		System.out.println("After Remove: ");
-		//graph.removeVertex("E");
-		//graph.removeEdge("D","E");
+//		graph.removeVertex("E");
+//		graph.removeEdge("D","E");
 //		System.out.println("Path btw A and F: "+graph.isPathExist("A", "F"));
-		System.out.println("BFS btw A and F: "+graph.breadthFirstSearch("A", "F"));
-		System.out.println("DFS btw A and F: "+graph.depthFirstSearch("A", "F"));
+//		System.out.println("BFS btw A and F: "+graph.breadthFirstSearch("A", "F"));
+//		System.out.println("DFS btw A and F: "+graph.depthFirstSearch("A", "F"));
 //		graph.print();
+		System.out.println("BFT:");
+		graph.breadthFirstTraversal();
+		System.out.println("DFT:");
+		graph.depthFirstTraversal();
 	}
 
 }
