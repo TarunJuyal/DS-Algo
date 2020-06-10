@@ -1,5 +1,8 @@
 package graph;
 
+/*graph creation using hashmap,Bredth first search, depth first search, Breath first traversal,depth first traversal,check if cycle,
+**check if connected, get components or subgraphs.*/
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -210,6 +213,106 @@ class Graph{
 			}
 		}
 	}
+	public boolean isConnected() {
+		int count=0;
+		HashMap<String, Boolean> isVisited=new HashMap<>();
+		Pair pair =new Pair();
+		for(Map.Entry<String, Vertex> entry:vertxs.entrySet()) {
+			if(isVisited.containsKey(entry.getKey()))
+				continue;
+			count++;
+			pair.vertexName=entry.getKey();
+			pair.traversalTill=entry.getKey();
+			LinkedList<Pair> queue=new LinkedList<>();
+			queue.addLast(pair);
+			while(!queue.isEmpty()) {
+				Pair p= queue.removeFirst();
+				if(isVisited.containsKey(p.vertexName))
+					continue;
+				isVisited.put(p.vertexName, true);
+				System.out.println(p.vertexName+ " "+ p.traversalTill);
+				Vertex currentVertex=vertxs.get(p.vertexName);
+				Set<String> neighbours=currentVertex.neighbours.keySet();
+				for(String neighbour : neighbours) {
+					if(!isVisited.containsKey(neighbour)) {
+						Pair newPair=new Pair();
+						newPair.vertexName=neighbour;
+						newPair.traversalTill=p.traversalTill+neighbour;
+						queue.addLast(newPair);
+					}
+				}
+			}
+		}
+		return count==1;
+	}
+	
+	public boolean isCycle() {
+		HashMap<String, Boolean> isVisited=new HashMap<>();
+		Pair pair =new Pair();
+		for(Map.Entry<String, Vertex> entry:vertxs.entrySet()) {
+			if(isVisited.containsKey(entry.getKey()))
+				continue;
+			pair.vertexName=entry.getKey();
+			pair.traversalTill=entry.getKey();
+			LinkedList<Pair> queue=new LinkedList<>();
+			queue.addLast(pair);
+			while(!queue.isEmpty()) {
+				Pair p= queue.removeFirst();
+				if(isVisited.containsKey(p.vertexName))
+					return true;
+				isVisited.put(p.vertexName, true);
+				System.out.println(p.vertexName+ " "+ p.traversalTill);
+				Vertex currentVertex=vertxs.get(p.vertexName);
+				Set<String> neighbours=currentVertex.neighbours.keySet();
+				for(String neighbour : neighbours) {
+					if(!isVisited.containsKey(neighbour)) {
+						Pair newPair=new Pair();
+						newPair.vertexName=neighbour;
+						newPair.traversalTill=p.traversalTill+neighbour;
+						queue.addLast(newPair);
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public HashMap<String,ArrayList<String>> getComponents() {
+		int component=0;
+		HashMap<String, Boolean> isVisited=new HashMap<>();
+		HashMap<String, ArrayList<String>> components=new HashMap<>();
+		Pair pair =new Pair();
+		for(Map.Entry<String, Vertex> entry:vertxs.entrySet()) {
+			if(isVisited.containsKey(entry.getKey()))
+				continue;
+			ArrayList<String> subGraph=new ArrayList<>();
+			pair.vertexName=entry.getKey();
+			pair.traversalTill=entry.getKey();
+			LinkedList<Pair> queue=new LinkedList<>();
+			queue.addLast(pair);
+			while(!queue.isEmpty()) {
+				Pair p= queue.removeFirst();
+				if(isVisited.containsKey(p.vertexName))
+					continue;
+				isVisited.put(p.vertexName, true);
+				subGraph.add(p.vertexName);
+				Vertex currentVertex=vertxs.get(p.vertexName);
+				Set<String> neighbours=currentVertex.neighbours.keySet();
+				for(String neighbour : neighbours) {
+					if(!isVisited.containsKey(neighbour)) {
+						Pair newPair=new Pair();
+						newPair.vertexName=neighbour;
+						newPair.traversalTill=p.traversalTill+neighbour;
+						queue.addLast(newPair);
+					}
+				}
+			}
+			component++;
+			components.put("Component"+component, subGraph);
+		}
+		return components;
+	}
+	
 }
 public class MyGraph {
 
@@ -235,14 +338,20 @@ public class MyGraph {
 //		System.out.println("After Remove: ");
 //		graph.removeVertex("E");
 //		graph.removeEdge("D","E");
+//		graph.removeEdge("G","E");
+//		graph.removeEdge("A","D");
 //		System.out.println("Path btw A and F: "+graph.isPathExist("A", "F"));
 //		System.out.println("BFS btw A and F: "+graph.breadthFirstSearch("A", "F"));
 //		System.out.println("DFS btw A and F: "+graph.depthFirstSearch("A", "F"));
 //		graph.print();
-		System.out.println("BFT:");
-		graph.breadthFirstTraversal();
-		System.out.println("DFT:");
-		graph.depthFirstTraversal();
+//		System.out.println("BFT:");
+//		graph.breadthFirstTraversal();
+//		System.out.println("DFT:");
+//		graph.depthFirstTraversal();
+//		System.out.println("Graph Connected: "+graph.isConnected());
+//		System.out.println("Graph Contains cycle: "+graph.isCycle());
+		System.out.println("components are:");
+		System.out.println(graph.getComponents());
 	}
 
 }
