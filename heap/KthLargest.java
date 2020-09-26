@@ -4,18 +4,23 @@ import java.util.PriorityQueue;
 
 public class KthLargest {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		PriorityQueue<Integer> heap=new PriorityQueue<>((first,second)-> second-first);
-		int a[]= {13,4,7,5,9,8};
-		int k = 3;
+	private static PriorityQueue<Integer> heap=new PriorityQueue<>((first,second)-> second-first);
+	public static int getKthLargest(int[] a,int k) {
+		if(k<1||k>a.length)
+			throw new IllegalStateException();
 		for(int i:a) {
 			heap.add(i);
 			if(heap.size()>a.length-k+1) {
 				heap.poll();
 			}
 		}
-		System.out.println(k+"th largest from end is: "+heap.peek());
+		return heap.peek();
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a[]= {13,4,7,5,9,8};
+		System.out.println(getKthLargest(a, 3));
 	}
 
 }
