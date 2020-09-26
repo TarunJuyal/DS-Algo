@@ -24,6 +24,7 @@ public class HeapifyOperation {
 		heapify(largerIndex, a);
 	}
 	
+	//for optimisation heapify only half no need to heapify leaf nodes and start from backwards for fewer recursions.
 	public static void heapify(int[] a) {
 		for(int i=(a.length-2)/2;i>=0;i--) {
 			heapify(i,a);
