@@ -8,7 +8,7 @@ import java.util.Map;
  * 		(Better cause don't have to traverse all string if there is no common prefix)
  * 3>  Divide & Conquer - perform any of the above operation on two half of the data set and concatenate at last O(n*m)
  * 4> Binary Search - Find Smallest string first and use binary search in that string to check if other strings contain it. 
- * 5> Tries Based - 
+ * 5> Tries Based - Traverse until children don't split or a word doesn't end.
  * */
 
 public class LongestCommonPrefixOperation {
