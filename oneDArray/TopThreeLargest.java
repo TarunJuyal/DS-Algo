@@ -10,15 +10,15 @@ public class TopThreeLargest {
 		int first=Integer.MIN_VALUE,second=Integer.MIN_VALUE,third=Integer.MIN_VALUE;
 		for(int i=1;i<a.length;i++) {
 			if(a[i]>first) {
-				second=first;
 				third=second;
+				second=first;
 				first=a[i];
 				}
-			if(a[i]>second && a[i]<first) {
+			else if(a[i]>second) {
 				third=second;
 				second=a[i];
 			}  
-			if(a[i]>third && a[i]<second) {
+			else if(a[i]>third) {
 				third=a[i];
 			}
 		}
