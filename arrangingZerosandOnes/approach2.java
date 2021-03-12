@@ -20,13 +20,16 @@ public class approach2 {
 	public static int[] sort(int a[]) {
 		int i=0,j=a.length-1;
 		while(i!=j) {
-			if(a[i]>a[j]) {
-				int t=a[i];
-				a[i]=a[j];
-				a[j]=t;
-			    j--;
+			while (a[i] == 0 && i < j)
+               			i++;
+			while (a[j] == 1 && i < j)
+               			j--;
+			if(i < j) {
+				a[i]=0;
+				a[j]=1;
+				i++;
+			    	j--;
 			}
-			i++;
 		}
 		return a;
 	}
