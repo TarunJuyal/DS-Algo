@@ -7,7 +7,7 @@ public class JumpSearch {
 	public static int search(int[] a, int target) {
 		int blocksize=(int)Math.sqrt(target);
 		int start=0,next=blocksize;
-		while(start>=a.length && a[next-1]<target) {
+		while(start<a.length && a[next-1]<target) {
 			start=next;
 			next+=blocksize;
 			if(next>a.length)
