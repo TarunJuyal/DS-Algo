@@ -1,3 +1,5 @@
+
+//brute force
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         for(int i=0;i<nums.length;i++){
@@ -11,3 +13,6 @@ class Solution {
         return null;
     }
 }
+
+// using hashset
+// using 2 pointer approach
