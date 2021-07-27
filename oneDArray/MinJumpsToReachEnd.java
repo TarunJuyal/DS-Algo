@@ -29,3 +29,28 @@ class Solution {
       return -1;
     }
 }
+
+//Leetcode 55 : Jump game  (return true or false)
+
+class Solution {
+    public boolean canJump(int[] nums) {
+        if(nums.length<=1)
+          return true;
+        if(nums[0]==0)
+          return false;
+      int maxReach=nums[0],step=nums[0];
+      for(int i=1;i<nums.length;i++){
+        if(nums.length-1==i)
+          return true;
+        maxReach=Math.max(maxReach,i+nums[i]);
+        step--;
+        
+        if(step==0){
+          if(i>=maxReach)
+            return false;
+          step=maxReach-i;
+        }
+      }
+      return false;
+    }
+}
