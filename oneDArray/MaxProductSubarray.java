@@ -54,7 +54,7 @@ static int maxSubarrayProduct(int arr[])
         return max_so_far;
     }
 
-// 2 traversals 1 from start other from end find max product in both directiom whichever max is the ans.(have to handle 0's)   O(n)
+// 3. 2 traversals 1 from start other from end find max product in both directiom whichever max is the ans.(have to handle 0's)   O(n)
 static int max_product(int arr[], int n)
 {
     int max_fwd = Integer.MIN_VALUE,
@@ -92,7 +92,7 @@ static int max_product(int arr[], int n)
     return res;
 }
 
-/*
+/* 4.
 The idea is to traverse array from left to right keeping two variables minVal and maxVal which represents the minimum and maximum product value till 
 the ith index of the array. Now, if the ith element of the array is negative that means now the values of minVal and maxVal will be swapped as value 
 of maxVal will become minimum by multiplying it with a negative number. Now, compare the minVal and maxVal.       O(n)
