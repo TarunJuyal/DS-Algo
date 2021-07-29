@@ -1,30 +1,22 @@
-package oneDArray;
-
-
-
-public class TopThreeLargest {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int a[]= {1,2,3,4,7,17,6,9,8};
-		int first=Integer.MIN_VALUE,second=Integer.MIN_VALUE,third=Integer.MIN_VALUE;
-		for(int i=1;i<a.length;i++) {
-			if(a[i]>third) {
-				third=a[i];
-			}
-			else if(a[i]>second) {
-				third=second;
-				second=a[i];
-			}
-			else if(a[i]>first) {
-				third=second;
-				second=first;
-				first=a[i];
-			}  
-		}
-		System.out.println("first largest is: "+first);
-		System.out.println("second largest is: "+second);
-		System.out.println("third largest is: "+third);
-	}
-
+static void thirdLargest(int arr[],
+                         int arr_size)
+{
+    if (arr_size < 3)
+    {
+        System.out.printf(" Invalid Input ");
+        return;
+    }
+    int first = arr[0];
+    for (int i = 1;i < arr_size ; i++)
+        if (arr[i] > first)
+            first = arr[i];
+    int second = Integer.MIN_VALUE;
+    for (int i = 0;i < arr_size ; i++)
+        if (arr[i] > second &&arr[i] < first)
+            second = arr[i];
+    int third = Integer.MIN_VALUE;
+    for (int i = 0;i < arr_size ; i++)
+        if (arr[i] > third &&arr[i] < second)
+            third = arr[i];
+    System.out.printf(third);
 }
