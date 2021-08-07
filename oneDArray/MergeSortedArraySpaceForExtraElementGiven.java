@@ -1,4 +1,4 @@
-// a1=[3,2,1,0,0,0]   a2=[2,5,6]
+// a1=[1,2,3,0,0,0]   a2=[2,5,6]
 
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
