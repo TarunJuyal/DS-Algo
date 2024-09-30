@@ -30,12 +30,4 @@ public class BinarySearch {
 		else
 			return searchRecursive(a, target, low, mid-1);
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int[] a= {10,20,40,50,70,80};             //only works on sorted array.
-		System.out.println(searchIterative(a, 50));
-		System.out.println(searchRecursive(a, 90));
-	}
-
 }
