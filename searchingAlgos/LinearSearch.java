@@ -8,11 +8,5 @@ public class LinearSearch {
 				return i;
 		return -1;
 	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int a[]= {7,1,3,6,5};
-		System.out.println(search(a, 6));
-	}
 
 }
